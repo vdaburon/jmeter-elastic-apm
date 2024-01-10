@@ -66,9 +66,9 @@ io.github.vdaburon.jmeter.elkapmxml.ElkApmJMeterManager
  -help                            Help and show parameters
  -regex &lt;regex&gt;                   regular expression matches Transaction Controller Label (default .*) (e.g : SC[0-9]+_.
                                   for SC01_P01_HOME or SC09_P12_LOGOUT)
-E.g : java -jar elk-apm-jmeter-xml-&lt;version&gt;-jar-with-dependencies.jar -file_in script1.jmx -file_out script1_add.jmx
+E.g : java -jar jmeter-elk-apm-&lt;version&gt;-jar-with-dependencies.jar -file_in script1.jmx -file_out script1_add.jmx
 -action ADD -regex SC.*
-E.g : java -jar elk-apm-jmeter-xml-&lt;version&gt;-jar-with-dependencies.jar -file_in script1_add.jmx -file_out
+E.g : java -jar jmeter-elk-apm-&lt;version&gt;-jar-with-dependencies.jar -file_in script1_add.jmx -file_out
 script1_remove.jmx -action REMOVE -regex .*
 [main] INFO io.github.vdaburon.jmeter.elkapmxml.ElkApmJMeterManager - main end (exit 1) ERROR
 

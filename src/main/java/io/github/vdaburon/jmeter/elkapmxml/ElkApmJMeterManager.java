@@ -546,10 +546,10 @@ public class ElkApmJMeterManager {
 
 	private static void helpUsage(Options options) {
 		HelpFormatter formatter = new HelpFormatter();
-		String footer = "E.g : java -jar elk-apm-jmeter-xml-<version>-jar-with-dependencies.jar -" + K_JMETER_FILE_IN_OPT + " script1.jmx -"
+		String footer = "E.g : java -jar jmeter-elk-apm-<version>-jar-with-dependencies.jar -" + K_JMETER_FILE_IN_OPT + " script1.jmx -"
 				+ K_JMETER_FILE_OUT_OPT + " script1_add.jmx -" + K_ACTION_OPT + " ADD -"
 				+ K_REGEX_OPT + " SC.*\n";
-		footer+="E.g : java -jar elk-apm-jmeter-xml-<version>-jar-with-dependencies.jar -" + K_JMETER_FILE_IN_OPT + " script1_add.jmx -"
+		footer+="E.g : java -jar jmeter-elk-apm-<version>-jar-with-dependencies.jar -" + K_JMETER_FILE_IN_OPT + " script1_add.jmx -"
 				+ K_JMETER_FILE_OUT_OPT + " script1_remove.jmx -" + K_ACTION_OPT + " REMOVE -"
 				+ K_REGEX_OPT + " .*";
 		formatter.printHelp(120, ElkApmJMeterManager.class.getName(),
