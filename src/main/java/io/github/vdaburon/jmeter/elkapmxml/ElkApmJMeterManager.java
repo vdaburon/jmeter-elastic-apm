@@ -34,7 +34,6 @@ public class ElkApmJMeterManager {
 	private static final String COMMENT_BEGIN_ELK_APM = "@@ELK_APM_BEGIN";
 	private static final String COMMENT_END_ELK_APM = "@@ELK_APM_END";
 	private static final String COMMENT_APM_UDV = "@@ELK_APM_UDV";
-	private static final String COMMENT_APM_SET_IGNORE = "@@ELK_APM_SET_IGNORE";
 
 	// CLI OPTIONS
 	public static final String K_JMETER_FILE_IN_OPT = "file_in";
@@ -285,10 +284,6 @@ public class ElkApmJMeterManager {
 		Pattern patternCommentEndEltTc = Pattern.compile(".*?<stringProp name=\"TestPlan.comments\">" + COMMENT_END_ELK_APM + "</stringProp>"); // JSR223 for end transaction
 		Pattern patternCommentEltArgument = Pattern.compile(".*?<stringProp name=\"TestPlan.comments\">" + COMMENT_APM_UDV + "</stringProp>"); // UDV with ELK_APM_UDV
 		Pattern patternStartEltArguments = Pattern.compile(".*?<Arguments guiclass=\"ArgumentsPanel\" testclass=\"Arguments\".*");
-		Pattern patternCommentEltPpIgnore = Pattern.compile(".*?<stringProp name=\"TestPlan.comments\">" + COMMENT_APM_SET_IGNORE + "</stringProp>"); // Post processor JSE223 with ignore
-		Pattern patternStartEltHt = Pattern.compile(".*?<hashTree>");
-		Pattern patternEndEltHt = Pattern.compile(".*?</hashTree>");
-
 
 		boolean bAlreadyAdd = false;
 		Iterator<String> it = lkfileJMeterOrig.iterator();
@@ -316,34 +311,7 @@ public class ElkApmJMeterManager {
 
 				}
 				String tempLine = it.next(); // read </JSR223Sampler>
-				bAlreadyAdd = true;
-			}
-
-			// <JSR223PostProcessor
-			Matcher matcherCommentEltPpIgnore = patternCommentEltPpIgnore.matcher(currentLine);
-			boolean isCommentEltPpIgnore = matcherCommentEltPpIgnore.matches();
-			if (isCommentEltPpIgnore) {
-				// remove lines in the lkReturn from comment @@ELK_APM_SET_IGNORE to <hashTree>
-				boolean bNeedRemove = true;
-				while (bNeedRemove) {
-					String lastLine = lkReturn.removeLast();
-
-					Matcher matcherStartEltHt = patternStartEltHt.matcher(lastLine);
-					boolean isStartEltHt = matcherStartEltHt.matches();
-					if (isStartEltHt) {
-						bNeedRemove = false;
-					}
-
-				}
-				boolean bReadUntilEndHt = true;
-				while (bReadUntilEndHt) {
-					String readLine = it.next(); // read until </hashTree>
-					Matcher matcherEndEltHt = patternEndEltHt.matcher(readLine);
-					boolean isEndEltHt = matcherEndEltHt.matches();
-					if (isEndEltHt) {
-						bReadUntilEndHt = false;
-					}
-				}
+				String tempLine2 = it.next(); // read <hashTree/>
 				bAlreadyAdd = true;
 			}
 

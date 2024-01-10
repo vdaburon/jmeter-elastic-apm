@@ -155,7 +155,6 @@ This tags are :
 - In the "JSR223 groovy start transaction apm", the reserved tags are : "@@TC\_NAME" in the Parameters text field, this string will be replaced by the label of the following Transaction Controller and the "@@ELK\_APM\_BEGIN" in the Comment text field
 - In the "JRS223 groovy end transaction apm", the reserved tag is "@@ELK\_APM\_END" in the Comment text field
 - In the "User Defined Variables", the reserved tag is "@@ELK\_APM\_UDV" in the Comment text field
-- If a "JSR223 PostProcessor SetIgnore" child of groovy sampler exists (no more used), the reserved tag is "@@ELK\_APM\_SET\_IGNORE" in the Comment text field 
 
 ## Call this tool likes a library
 To call this tool in an other tool, add the jar jmeter-elk-apm-&lt;version&gt;-jar and this 2 libraries dependence (common-cli and org.slf4j) in the classpath and :
@@ -169,6 +168,6 @@ ElkApmJMeterManager.modifyAddSamplerForElkApm(sFileIn, sFileOut, ElkApmJMeterMan
 </pre>
 
 ## Version
-Version 1.1 correct the class name in the uber jar.
+Version 1.1 correct the class name in the uber jar and correct REMOVE result
 
 Version 1.0 first version of this tool.
