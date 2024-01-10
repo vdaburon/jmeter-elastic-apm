@@ -42,7 +42,7 @@ The maven groupId, artifactId and version, this plugin is in the **Maven Central
 ```xml
 <groupId>io.github.vdaburon</groupId>
 <artifactId>jmeter-elk-apm</artifactId>
-<version>1.0</version>
+<version>1.1</version>
 ```
 ## Ready to use
 In the [Release of the project](https://github.com/vdaburon/jmeter-elk-apm/releases) to download jar file, you will find the tool compiled in one (uber) jar file which is directly usable.
