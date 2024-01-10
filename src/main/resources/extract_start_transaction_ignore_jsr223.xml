@@ -1,0 +1,33 @@
+          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="groovy begin transaction apm" enabled="true">
+            <stringProp name="scriptLanguage">groovy</stringProp>
+            <stringProp name="parameters">@@TC_NAME</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="script">import co.elastic.apm.api.ElasticApm;
+import co.elastic.apm.api.Transaction;
+import co.elastic.apm.api.Scope;
+SampleResult.setIgnore(); // Ignore, we don't want this sampler in listener
+String sAPM_ACTIVE = vars.get(&quot;APM_ACTIVE&quot;);
+if (sAPM_ACTIVE == null || &quot;TRUE&quot;.equalsIgnoreCase(sAPM_ACTIVE)) {
+	String transactionName = Parameters;
+	Transaction transaction = ElasticApm.startTransaction();
+	Scope scope = transaction.activate();
+	String sAPM_TRANS_PREFIX = vars.get(&quot;APM_TRANS_PREFIX&quot;);
+	if (sAPM_TRANS_PREFIX == null) {
+		sAPM_TRANS_PREFIX =&quot;&quot;;
+	}
+	else {
+		transactionName = sAPM_TRANS_PREFIX + transactionName;
+	}
+	try {
+		transaction.setName(transactionName);
+		vars.putObject(&quot;V_APM_TRANSACTION_TC&quot;, transaction);
+		return transactionName;
+	}
+	catch (Exception ex) {
+		log.error(&quot;Exception ex = &quot; + ex.toString());
+	}
+}</stringProp>
+            <stringProp name="TestPlan.comments">@@ELK_APM_BEGIN</stringProp>
+          </JSR223Sampler>
+		  <hashTree/>

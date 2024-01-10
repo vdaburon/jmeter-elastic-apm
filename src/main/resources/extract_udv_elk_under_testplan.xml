@@ -1,0 +1,18 @@
+    </TestPlan>
+    <hashTree>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="udv out APM_ACTIVE, APM_TRANS_PREFIX" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="APM_ACTIVE" elementType="Argument">
+            <stringProp name="Argument.name">APM_ACTIVE</stringProp>
+            <stringProp name="Argument.value">${__P(param_apm_active,TRUE)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="APM_TRANS_PREFIX" elementType="Argument">
+            <stringProp name="Argument.name">APM_TRANS_PREFIX</stringProp>
+            <stringProp name="Argument.value">${__P(param_apm_prefix,TR_)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+        <stringProp name="TestPlan.comments">@@ELK_APM_UDV</stringProp>
+      </Arguments>
+      <hashTree/>

@@ -1,0 +1,18 @@
+          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="groovy end transaction apm" enabled="true">
+            <stringProp name="scriptLanguage">groovy</stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="script">import co.elastic.apm.api.Transaction;
+SampleResult.setIgnore(); // Ignore, we don't want this sampler in listener
+String sAPM_ACTIVE = vars.get(&quot;APM_ACTIVE&quot;);
+if (sAPM_ACTIVE == null || &quot;TRUE&quot;.equalsIgnoreCase(sAPM_ACTIVE)) {
+	Transaction transaction = (Transaction) vars.getObject(&quot;V_APM_TRANSACTION_TC&quot;);
+	if (transaction != null) {
+		transaction.end();
+		vars.putObject(&quot;V_APM_TRANSACTION_TC&quot;, null);
+	}
+}</stringProp>
+            <stringProp name="TestPlan.comments">@@ELK_APM_END</stringProp>
+          </JSR223Sampler>
+          <hashTree/>
