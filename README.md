@@ -169,4 +169,6 @@ ElkApmJMeterManager.modifyAddSamplerForElkApm(sFileIn, sFileOut, ElkApmJMeterMan
 </pre>
 
 ## Version
+Version 1.1 correct the class name in the uber jar.
+
 Version 1.0 first version of this tool.
