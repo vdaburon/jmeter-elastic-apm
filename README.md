@@ -114,12 +114,21 @@ In &lt;JMETER_HOME&gt;\bin modify the jmeter.bat or setenv.bat
 
 Add ELK APM configuration likes :
 <pre>
-set APM_SERVICE_NAME=jmeter
-set APM_ENVIRONMENT=gestdoc
+set APM_SERVICE_NAME=yourServiceName
+set APM_ENVIRONMENT=yourEnvironment
 set APM_SERVER_URL=http://apm_host:8200
 
 set JVM_ARGS=-javaagent:&lt;PATH_TO_AGENT_APM_JAR&gt;\elastic-apm-agent-&lt;version&gt;.jar -Delastic.apm.service_name=%APM_SERVICE_NAME% -Delastic.apm.environment=%APM_ENVIRONMENT% -Delastic.apm.server_urls=%APM_SERVER_URL%
 </pre>
+
+Another solution, create a windows shell likes <code>jmeter_with_elkapm.bat</code> in the &lt;JMETER_HOME&gt;\bin:
+<pre>
+set APM_SERVICE_NAME=yourServiceName
+set APM_ENVIRONMENT=yourEnvironment
+set APM_SERVER_URL=http://apm_host:8200
+set JVM_ARGS=-javaagent:&lt;PATH_TO_AGENT_APM_JAR&gt;\elastic-apm-agent-&lt;version&gt;.jar -Delastic.apm.service_name=%APM_SERVICE_NAME% -Delastic.apm.environment=%APM_ENVIRONMENT% -Delastic.apm.server_urls=%APM_SERVER_URL% & jmeter.bat 
+</pre>
+Remark the **& jmeter.bat** at end of the line with set JVM_ARGS
 
 ### Add the elastic apm library
 Add the ELK apm api library in the &lt;JMETER_HOME&gt;\lib\apm-agent-api-&lt;version&gt;.jar
