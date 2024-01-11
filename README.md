@@ -31,6 +31,10 @@ Each JMeter Transaction Controller (page) is surround with a begin transaction a
 
 ![Script with ELK APM configuration and groovy code](doc/images/script_add.png)
 
+In View Results Tree, you will see new request headers (traceparent and elastic-apm-traceparent) automatically added by the elastic apm agent with the transaction id (e.g: 4443e451a1f7d42abdfbd739d455eac5) created by the jsr223 groovy begin transaction apm.
+
+![View Results Tree with traceparent](doc/images/jmeter_request_header_with_traceparent.png)
+
 You will see all Transactions in Kibana with the vision of the page in JMeter (JMeter Transaction Controller usually == page) (click on image to see the full size image)
 
 ![kibana jmeter page](doc/images/kibana_jmeter_transactions.png)
