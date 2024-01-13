@@ -152,7 +152,7 @@ Paths are relative to the home maven project
 - Put the apm-agent-api-${elk_apm_version}.jar in <project>/src/test/jmeter directory
 - Put  your jmeter script that contains groovy code added with **jmeter-elk-apm** tool in <project>/src/test/jmeter directory (e.g : script1_add.jmx)
 - In the maven build section, in the configuration > testPlanLibraries > declare the apm api library <artifact>co.elastic.apm:apm-agent-api:${elk_apm_version}</artifact>
-- In the jMeterProcessJVMSettings > arguments for the apm agent likes:
+- In the jMeterProcessJVMSettings > arguments add apm agent configuration likes:
 <pre>
 <jMeterProcessJVMSettings>
 <arguments>
@@ -164,7 +164,7 @@ Paths are relative to the home maven project
 </jMeterProcessJVMSettings>
 </pre>
 
-A pom.xml example, the elk_apm_version is set to 1.37.0 for the apm agent and the apm library but you could choose another version :
+A pom.xml example, the elk_apm_version is set to "1.37.0" for the apm agent and the apm library but you could choose another version :
 ```XML
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -182,7 +182,7 @@ A pom.xml example, the elk_apm_version is set to 1.37.0 for the apm agent and th
 		<!-- ELK APM -->
 		<elk_apm_version>1.37.0</elk_apm_version>
 		<elk_apm_service_name>YourServiceNane</elk_apm_service_name>
-		<elk_apm_environment>YourEnvironnemnt</elk_apm_environment>
+		<elk_apm_environment>YourEnvironment</elk_apm_environment>
 		<elk_apm_urls>http://apm_server:8200</elk_apm_urls>
 	</properties>
 
