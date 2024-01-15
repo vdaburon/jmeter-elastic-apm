@@ -46,14 +46,6 @@ And the TIMELINE for JMeter Transaction Controller, you see the JMeter Page and 
 ## License
 See the LICENSE file Apache 2 [https://www.apache.org/licenses/LICENSE-2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
-## Usage Maven
-The maven groupId, artifactId and version, this plugin is in the **Maven Central Repository** [![Maven Central jmeter-elk-apm](https://maven-badges.herokuapp.com/maven-central/io.github.vdaburon/jmeter-elk-apm/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.vdaburon/jmeter-elk-apm)
-
-```xml
-<groupId>io.github.vdaburon</groupId>
-<artifactId>jmeter-elk-apm</artifactId>
-<version>1.1</version>
-```
 ## Ready to use
 In the [Release of the project](https://github.com/vdaburon/jmeter-elk-apm/releases)  you will find the tool compiled in one (uber) jar file which is directly usable.
 
@@ -237,6 +229,14 @@ A pom.xml example, the elk_apm_version is set to "1.37.0" for the apm agent and 
 		</plugins>
 	</build>
 </project>
+```
+### Usage Maven
+The maven groupId, artifactId and version, this plugin is in the **Maven Central Repository** [![Maven Central jmeter-elk-apm](https://maven-badges.herokuapp.com/maven-central/io.github.vdaburon/jmeter-elk-apm/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.vdaburon/jmeter-elk-apm)
+
+```xml
+<groupId>io.github.vdaburon</groupId>
+<artifactId>jmeter-elk-apm</artifactId>
+<version>1.1</version>
 ```
 
 ## Advanced usage
