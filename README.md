@@ -27,7 +27,19 @@ java -jar jmeter-elk-apm-&lt;version&gt;-jar-with-dependencies.jar -file_in scri
 </pre>
 and the script (script1_add.jmx) after **action** = **ADD**
 
-Each JMeter Transaction Controller (page) is surround with a begin transaction and an end transaction (use groovy api call)
+Each JMeter Transaction Controller (page) is surround with a begin transaction and an end transaction (use groovy api call).
+
+In the "groovy begin transaction apm", the groovy code calls the ElasticApm API (simplified code) :
+<pre>
+Transaction transaction = ElasticApm.startTransaction();
+Scope scope = transaction.activate();
+transaction.setName(transactionName); // contains the JMeter Transaction Controller Name
+</pre>
+
+And in the "groovy end transaction apm", the groovy code calls the ElasticApmp API  (simplified code):
+<pre>
+transaction.end();
+</pre>
 
 ![Script with ELK APM configuration and groovy code](doc/images/script_add.png)
 
@@ -42,6 +54,11 @@ You will see all Transactions in Kibana with the vision of the page in JMeter (J
 And the TIMELINE for JMeter Transaction Controller, you see the JMeter Page and the web application gestdoc running in Tomcat (click on image to see the full size image)
 
 ![kibana timeline_tc](doc/images/kibana_jmeter_timeline_tc.png)
+
+## Simplified architecture diagram
+The simplified architecture : Apache JMeter and a java apm agent, Apache Tomcat and the java apm agent with web application gestdoc, ElasticSearch suite with ElasticSearch, APM Server and Kibana, a user views the Kibana Dashboards with navigator.
+
+![simplified architecture](doc/images/architecture_jmeter_tomcat_elk.png)
 
 ## License
 See the LICENSE file Apache 2 [https://www.apache.org/licenses/LICENSE-2.0](https://www.apache.org/licenses/LICENSE-2.0)
