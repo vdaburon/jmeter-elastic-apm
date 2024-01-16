@@ -2,6 +2,7 @@
 <img src="https://github.com/vdaburon/jmeter-elk-apm/blob/main/doc/logo_projet_jm_apm_timeline.png" alt="jmeter-elk-apm logo"/>
 
   <p align="center">Manages the integration of ElasticSearch Application Performance Monitoring API in the Apache JMeter.</p>
+  <p align="center"><a href="https://github.com/vdaburon/jmeter-elk-apm">Link to github project jmeter-elk-apm</a></p>
 </p>
 
 # Apache JMeter with integration of ElasticSearch Application Performance Monitoring
