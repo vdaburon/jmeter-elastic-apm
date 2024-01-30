@@ -13,6 +13,6 @@ if (sAPM_ACTIVE == null || &quot;TRUE&quot;.equalsIgnoreCase(sAPM_ACTIVE)) {
 		vars.putObject(&quot;V_APM_TRANSACTION_TC&quot;, null);
 	}
 }</stringProp>
-            <stringProp name="TestPlan.comments">@@ELK_APM_END</stringProp>
+            <stringProp name="TestPlan.comments">@@ELASTIC_APM_END</stringProp>
           </JSR223Sampler>
           <hashTree/>

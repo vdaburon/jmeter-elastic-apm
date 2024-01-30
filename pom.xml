@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.vdaburon</groupId>
-    <artifactId>jmeter-elk-apm</artifactId>
-    <version>1.1</version>
+    <artifactId>jmeter-elastic-apm</artifactId>
+    <version>1.2</version>
     <packaging>jar</packaging>
-    <name>Manage ELK APM integration for Apache JMeter</name>
-    <description>ADD/REMOVE ELK APM library api call around Transaction Controller, you will see timeline and sub calls for the Transaction Controller (Page) in Kibana</description>
+    <name>Manage ELASTIC APM integration for Apache JMeter</name>
+    <description>ADD/REMOVE ELASTIC APM library api call around Transaction Controller, you will see timeline and sub calls for the Transaction Controller (Page) in Kibana</description>
     <url>https://github.com/vdaburon/jmeter-elk-apm</url>
     <inceptionYear>2024</inceptionYear>
 
@@ -39,9 +39,9 @@
     </issueManagement>
 
     <scm>
-        <connection>https://github.com/vdaburon/jmeter-elk-apm.git</connection>
-        <developerConnection>https://github.com/vdaburon/jmeter-elk-apm.git</developerConnection>
-        <url>https://github.com/vdaburon/jmeter-elk-apm</url>
+        <connection>https://github.com/vdaburon/jmeter-elastic-apm.git</connection>
+        <developerConnection>https://github.com/vdaburon/jmeter-elasitc-apm.git</developerConnection>
+        <url>https://github.com/vdaburon/jmeter-elastic-apm</url>
         <tag>HEAD</tag>
     </scm>
 
@@ -131,7 +131,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        io.github.vdaburon.jmeter.elkapmxml.ElkApmJMeterManager
+                                        io.github.vdaburon.jmeter.elasticapmxml.ElasticApmJMeterManager
                                     </mainClass>
                                 </manifest>
                             </archive>

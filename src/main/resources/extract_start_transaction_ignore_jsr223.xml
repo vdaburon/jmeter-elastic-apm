@@ -28,6 +28,6 @@ if (sAPM_ACTIVE == null || &quot;TRUE&quot;.equalsIgnoreCase(sAPM_ACTIVE)) {
 		log.error(&quot;Exception ex = &quot; + ex.toString());
 	}
 }</stringProp>
-            <stringProp name="TestPlan.comments">@@ELK_APM_BEGIN</stringProp>
+            <stringProp name="TestPlan.comments">@@ELASTIC_APM_BEGIN</stringProp>
           </JSR223Sampler>
 		  <hashTree/>

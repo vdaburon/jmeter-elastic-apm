@@ -13,6 +13,6 @@
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
-        <stringProp name="TestPlan.comments">@@ELK_APM_UDV</stringProp>
+        <stringProp name="TestPlan.comments">@@ELASTIC_APM_UDV</stringProp>
       </Arguments>
       <hashTree/>

@@ -1,4 +1,4 @@
-package io.github.vdaburon.jmeter.elkapmxml;
+package io.github.vdaburon.jmeter.elasticapmxml;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -27,13 +27,13 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
-public class ElkApmJMeterManager {
-	private static final Logger LOGGER = LoggerFactory.getLogger(ElkApmJMeterManager.class);
+public class ElasticApmJMeterManager {
+	private static final Logger LOGGER = LoggerFactory.getLogger(ElasticApmJMeterManager.class);
 	// fixed string to find in the jmeter script or in the extracted xml files
 	private static final String PARAM_TC_NAME = "@@TC_NAME";
-	private static final String COMMENT_BEGIN_ELK_APM = "@@ELK_APM_BEGIN";
-	private static final String COMMENT_END_ELK_APM = "@@ELK_APM_END";
-	private static final String COMMENT_APM_UDV = "@@ELK_APM_UDV";
+	private static final String COMMENT_BEGIN_ELASTIC_APM = "@@ELASTIC_APM_BEGIN";
+	private static final String COMMENT_END_ELASTIC_APM = "@@ELASTIC_APM_END";
+	private static final String COMMENT_APM_UDV = "@@ELASTIC_APM_UDV";
 
 	// CLI OPTIONS
 	public static final String K_JMETER_FILE_IN_OPT = "file_in";
@@ -278,10 +278,10 @@ public class ElkApmJMeterManager {
 	private static LinkedList<String> removeSamplerForElkApm(LinkedList<String> lkfileJMeterOrig, String regexTc, LinkedList<String> lkStart, LinkedList<String> lkEnd, LinkedList<String> lkUdvUnderTp) {
 		LinkedList<String> lkReturn = new LinkedList<String>();
 
-		Pattern patternCommentStartEltTc = Pattern.compile(".*?<stringProp name=\"TestPlan.comments\">" + COMMENT_BEGIN_ELK_APM + "</stringProp>"); // JSR223 for begin transaction
+		Pattern patternCommentStartEltTc = Pattern.compile(".*?<stringProp name=\"TestPlan.comments\">" + COMMENT_BEGIN_ELASTIC_APM + "</stringProp>"); // JSR223 for begin transaction
 		Pattern patternStartEltJsr223 = Pattern.compile(".*?<JSR223Sampler guiclass=\"TestBeanGUI\" testclass=\"JSR223Sampler\".*");
 
-		Pattern patternCommentEndEltTc = Pattern.compile(".*?<stringProp name=\"TestPlan.comments\">" + COMMENT_END_ELK_APM + "</stringProp>"); // JSR223 for end transaction
+		Pattern patternCommentEndEltTc = Pattern.compile(".*?<stringProp name=\"TestPlan.comments\">" + COMMENT_END_ELASTIC_APM + "</stringProp>"); // JSR223 for end transaction
 		Pattern patternCommentEltArgument = Pattern.compile(".*?<stringProp name=\"TestPlan.comments\">" + COMMENT_APM_UDV + "</stringProp>"); // UDV with ELK_APM_UDV
 		Pattern patternStartEltArguments = Pattern.compile(".*?<Arguments guiclass=\"ArgumentsPanel\" testclass=\"Arguments\".*");
 
@@ -514,14 +514,14 @@ public class ElkApmJMeterManager {
 
 	private static void helpUsage(Options options) {
 		HelpFormatter formatter = new HelpFormatter();
-		String footer = "E.g : java -jar jmeter-elk-apm-<version>-jar-with-dependencies.jar -" + K_JMETER_FILE_IN_OPT + " script1.jmx -"
+		String footer = "E.g : java -jar jmeter-elastic-apm-<version>-jar-with-dependencies.jar -" + K_JMETER_FILE_IN_OPT + " script1.jmx -"
 				+ K_JMETER_FILE_OUT_OPT + " script1_add.jmx -" + K_ACTION_OPT + " ADD -"
 				+ K_REGEX_OPT + " SC.*\n";
-		footer+="E.g : java -jar jmeter-elk-apm-<version>-jar-with-dependencies.jar -" + K_JMETER_FILE_IN_OPT + " script1_add.jmx -"
+		footer+="E.g : java -jar jmeter-elastic-apm-<version>-jar-with-dependencies.jar -" + K_JMETER_FILE_IN_OPT + " script1_add.jmx -"
 				+ K_JMETER_FILE_OUT_OPT + " script1_remove.jmx -" + K_ACTION_OPT + " REMOVE -"
 				+ K_REGEX_OPT + " .*";
-		formatter.printHelp(120, ElkApmJMeterManager.class.getName(),
-				ElkApmJMeterManager.class.getName(), options, footer, true);
+		formatter.printHelp(120, ElasticApmJMeterManager.class.getName(),
+				ElasticApmJMeterManager.class.getName(), options, footer, true);
 	}
 }
 
