@@ -298,10 +298,12 @@ import io.github.vdaburon.jmeter.elasticapmxml.ElasticApmJMeterManager;
 String sRegexTc = ".*";
 String sFileIn = "script1.jmx";
 String sFileOut = "script1_add.jmx";
-ElasticApmJMeterManager.modifyAddSamplerForelasticApm(sFileIn, sFileOut, ElasticApmJMeterManager.ACTION_ADD, sRegexTc, ElasticApmJMeterManager.EXTRACT_START_JSR223, ElasticApmJMeterManager.EXTRACT_END_JSR223, ElasticApmJMeterManager.EXTRACT_UDV_elastic);
+ElasticApmJMeterManager.modifyAddSamplerForElasticApm(sFileIn, sFileOut, ElasticApmJMeterManager.ACTION_ADD, sRegexTc, ElasticApmJMeterManager.EXTRACT_START_JSR223, ElasticApmJMeterManager.EXTRACT_END_JSR223, ElasticApmJMeterManager.EXTRACT_UDV_ELASTIC);
 </pre>
 
 ## Version
+Version 1.3 change method name ELK to ELASTIC et file name tp extract_udv_elastic_under_testplan.jmx
+
 Version 1.2 change globally ELK to ELASTIC
 
 Version 1.1 correct the class name in the uber jar and correct REMOVE result

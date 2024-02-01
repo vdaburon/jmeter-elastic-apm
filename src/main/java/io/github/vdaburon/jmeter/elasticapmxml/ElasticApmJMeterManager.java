@@ -55,7 +55,7 @@ public class ElasticApmJMeterManager {
 	// this files are in the jar
 	public static final String EXTRACT_START_JSR223 = "extract_start_transaction_ignore_jsr223.xml";
 	public static final String EXTRACT_END_JSR223 = "extract_end_transaction_ignore_jsr223.xml";
-	public static final String EXTRACT_UDV_ELK = "extract_udv_elk_under_testplan.xml";
+	public static final String EXTRACT_UDV_ELASTIC = "extract_udv_elastic_under_testplan.xml";
 
 	public static void main(String[] args) {
 		long startTime = System.currentTimeMillis();
@@ -114,7 +114,7 @@ public class ElasticApmJMeterManager {
 		// XML extract to add jsr223 in the new file
 		String sExtractAddStartJsr = EXTRACT_START_JSR223;
 		String sExtractAddEndJsr = EXTRACT_END_JSR223;
-		String sExtractUdvUnderTp = EXTRACT_UDV_ELK;
+		String sExtractUdvUnderTp = EXTRACT_UDV_ELASTIC;
 
 		sTmp = (String) parseProperties.get(K_EXTRACT_START_OPT);
 		if (sTmp != null) {
@@ -134,7 +134,7 @@ public class ElasticApmJMeterManager {
 			LOGGER.info(K_EXTRACT_UDV_OPT + "=" + sExtractUdvUnderTp);
 		}
 
-		modifyAddSamplerForElkApm(sJMeterXmlFileScript, sJMeterXmlFileScriptOutModif, action, regex, sExtractAddStartJsr, sExtractAddEndJsr, sExtractUdvUnderTp);
+		modifyAddSamplerForElasticApm(sJMeterXmlFileScript, sJMeterXmlFileScriptOutModif, action, regex, sExtractAddStartJsr, sExtractAddEndJsr, sExtractUdvUnderTp);
 
 		long durationMs = System.currentTimeMillis() - startTime;
 		LOGGER.info("Duration milli seconds=" + durationMs);
@@ -142,7 +142,7 @@ public class ElasticApmJMeterManager {
 		System.exit(0);
 	}
 
-	public static void modifyAddSamplerForElkApm(String jmeterXmlScript, String sJMeterXmlFileScriptModif, String action, String sRegexTcLabel, String sExtractAddStartJsr, String sExtractAddEndJsr, String sExtractUdvUnderTp) {
+	public static void modifyAddSamplerForElasticApm(String jmeterXmlScript, String sJMeterXmlFileScriptModif, String action, String sRegexTcLabel, String sExtractAddStartJsr, String sExtractAddEndJsr, String sExtractUdvUnderTp) {
 		LinkedList<String> lkFileJMeterOrig = readFileToLinkedList(jmeterXmlScript, READ_DIRECT_FILE);
 
 		int readMode = READ_FROM_JAR;
@@ -162,7 +162,7 @@ public class ElasticApmJMeterManager {
 		}
 		LinkedList<String> lkEnd = readFileToLinkedList(sExtractAddEndJsr, readMode);
 
-		if (EXTRACT_UDV_ELK.equals(sExtractUdvUnderTp)) {
+		if (EXTRACT_UDV_ELASTIC.equals(sExtractUdvUnderTp)) {
 			readMode = READ_FROM_JAR;
 		}
 		else {
@@ -172,16 +172,16 @@ public class ElasticApmJMeterManager {
 
 		LinkedList<String> fileModified = null;
 		if (ACTION_ADD.equals(action)) {
-			fileModified = addSamplerForElkApm(lkFileJMeterOrig, sRegexTcLabel, lkStart, lkEnd, lkUdvUnderTp);
+			fileModified = addSamplerForElasticApm(lkFileJMeterOrig, sRegexTcLabel, lkStart, lkEnd, lkUdvUnderTp);
 		}
 		if (ACTION_REMOVE.equals(action)) {
-			fileModified = removeSamplerForElkApm(lkFileJMeterOrig, sRegexTcLabel, lkStart, lkEnd, lkUdvUnderTp);
+			fileModified = removeSamplerForElasticApm(lkFileJMeterOrig, sRegexTcLabel, lkStart, lkEnd, lkUdvUnderTp);
 		}
 		writeXml(fileModified, sJMeterXmlFileScriptModif);
 	}
 
 
-	private static LinkedList<String> addSamplerForElkApm(LinkedList<String> lkfileJMeterOrig, String regexTc, LinkedList<String> lkStart, LinkedList<String> lkEnd, LinkedList<String> lkUdvUnderTp) {
+	private static LinkedList<String> addSamplerForElasticApm(LinkedList<String> lkfileJMeterOrig, String regexTc, LinkedList<String> lkStart, LinkedList<String> lkEnd, LinkedList<String> lkUdvUnderTp) {
 		LinkedList<String> lkReturn = new LinkedList<String>();
 
 		Pattern patternStartEltTc = Pattern.compile(".*?<TransactionController guiclass=\"TransactionControllerGui\" testclass=\"TransactionController\" testname=\"(.*?)\" enabled=\"true\">");
@@ -275,14 +275,14 @@ public class ElasticApmJMeterManager {
 		return lkReturn;
 	}
 
-	private static LinkedList<String> removeSamplerForElkApm(LinkedList<String> lkfileJMeterOrig, String regexTc, LinkedList<String> lkStart, LinkedList<String> lkEnd, LinkedList<String> lkUdvUnderTp) {
+	private static LinkedList<String> removeSamplerForElasticApm(LinkedList<String> lkfileJMeterOrig, String regexTc, LinkedList<String> lkStart, LinkedList<String> lkEnd, LinkedList<String> lkUdvUnderTp) {
 		LinkedList<String> lkReturn = new LinkedList<String>();
 
 		Pattern patternCommentStartEltTc = Pattern.compile(".*?<stringProp name=\"TestPlan.comments\">" + COMMENT_BEGIN_ELASTIC_APM + "</stringProp>"); // JSR223 for begin transaction
 		Pattern patternStartEltJsr223 = Pattern.compile(".*?<JSR223Sampler guiclass=\"TestBeanGUI\" testclass=\"JSR223Sampler\".*");
 
 		Pattern patternCommentEndEltTc = Pattern.compile(".*?<stringProp name=\"TestPlan.comments\">" + COMMENT_END_ELASTIC_APM + "</stringProp>"); // JSR223 for end transaction
-		Pattern patternCommentEltArgument = Pattern.compile(".*?<stringProp name=\"TestPlan.comments\">" + COMMENT_APM_UDV + "</stringProp>"); // UDV with ELK_APM_UDV
+		Pattern patternCommentEltArgument = Pattern.compile(".*?<stringProp name=\"TestPlan.comments\">" + COMMENT_APM_UDV + "</stringProp>"); // UDV with ELASTIC_APM_UDV
 		Pattern patternStartEltArguments = Pattern.compile(".*?<Arguments guiclass=\"ArgumentsPanel\" testclass=\"Arguments\".*");
 
 		boolean bAlreadyAdd = false;
@@ -297,8 +297,8 @@ public class ElasticApmJMeterManager {
 			Matcher matcherCommentEndEltTc = patternCommentEndEltTc.matcher(currentLine);
 			boolean isCommentEndEltTc = matcherCommentEndEltTc.matches(); // 
 
-			if (isCommentStartEltTc || isCommentEndEltTc) { // @@ELK_APM_BEGIN or @@ELK_APM_END
-				// remove lines in the lkReturn from comment  @@ELK_APM_BEGIN to <JSR223Sampler
+			if (isCommentStartEltTc || isCommentEndEltTc) { // @@ELASTIC_APM_BEGIN or @@ELASTIC_APM_END
+				// remove lines in the lkReturn from comment  @@ELASTIC_APM_BEGIN to <JSR223Sampler
 				boolean bNeedRemove = true;
 				while (bNeedRemove) {
 					String lastLine = lkReturn.removeLast();
@@ -315,11 +315,11 @@ public class ElasticApmJMeterManager {
 				bAlreadyAdd = true;
 			}
 
-			// @@ELK_APM_UDV
+			// @@ELASTIC_APM_UDV
 			Matcher matcherCommentEltArgument = patternCommentEltArgument.matcher(currentLine);
 			boolean isCommentEltArgument = matcherCommentEltArgument.matches();
 			if (isCommentEltArgument) {
-				// remove lines in the lkReturn from comment  @@ELK_APM_UDV to <Arguments 
+				// remove lines in the lkReturn from comment  @@ELASTIC_APM_UDV to <Arguments 
 				boolean bNeedRemove = true;
 				while (bNeedRemove) {
 					String lastLine = lkReturn.removeLast();
