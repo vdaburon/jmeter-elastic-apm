@@ -254,7 +254,7 @@ The maven groupId, artifactId and version, this plugin is in the **Maven Central
 ```xml
 <groupId>io.github.vdaburon</groupId>
 <artifactId>jmeter-elastic-apm</artifactId>
-<version>1.2</version>
+<version>1.3</version>
 ```
 
 ## Advanced usage
