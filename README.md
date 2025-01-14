@@ -104,10 +104,10 @@ This variables could be changed with JMeter properties at launch time, this prop
 
 elastic APM properties are :
 
-| property name    | comment                                                                                          |
-|------------------|--------------------------------------------------------------------------------------------------|
-| param_apm_active | default : TRUE , TRUE OR FALSE, if TRUE then api is call                                         |
-| param_apm_prefix | default : TR_ , Prefix of the transaction name, could be empty, SC01_LOGIN will be TR_SC01_LOGIN |
+| property name    | comment                                                                                                                             |
+|------------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| param_apm_active | default : TRUE , TRUE OR FALSE, if TRUE then api is call                                                                            |
+| param_apm_prefix | default : Empty , Prefix of the transaction name, could be empty, if param_apm_prefix = "TR_" then SC01_LOGIN will be TR_SC01_LOGIN |
 
 E.g : jmeter -Jparam_apm_prefix=TRANS_ , SC01_LOGIN will be TRANS_SC01_LOGIN in Kibana transactions list
 
@@ -239,6 +239,7 @@ A pom.xml example, the elastic_apm_version is set to "1.37.0" for the ELASTIC AP
                     <testFilesIncluded>
                         <jMeterTestFile>script1_add.jmx</jMeterTestFile>
                     </testFilesIncluded>
+                    <logsDirectory>${project.build.directory}/jmeter/results</logsDirectory>
                     <generateReports>false</generateReports>
                     <testResultsTimestamp>false</testResultsTimestamp>
                     <resultsFileFormat>csv</resultsFileFormat>
@@ -254,7 +255,7 @@ The maven groupId, artifactId and version, this plugin is in the **Maven Central
 ```xml
 <groupId>io.github.vdaburon</groupId>
 <artifactId>jmeter-elastic-apm</artifactId>
-<version>1.3</version>
+<version>1.4</version>
 ```
 
 ## Advanced usage
@@ -302,10 +303,12 @@ ElasticApmJMeterManager.modifyAddSamplerForElasticApm(sFileIn, sFileOut, Elastic
 </pre>
 
 ## Version
-Version 1.3 change method name ELK to ELASTIC et file name tp extract_udv_elastic_under_testplan.jmx
+Version 1.4 2025-01-14, Default property "param_apm_prefix" is now empty by default because you can't remove it with empty value but easily add no empty value e.g: -Jparam_apm_prefix=TR_
 
-Version 1.2 change globally ELK to ELASTIC
+Version 1.3 2024-02-01, Change method name ELK to ELASTIC et file name tp extract_udv_elastic_under_testplan.jmx
 
-Version 1.1 correct the class name in the uber jar and correct REMOVE result
+Version 1.2 2024-01-30, Change globally ELK to ELASTIC
 
-Version 1.0 first version of this tool.
+Version 1.1, 2024-01-10, Correct the class name in the uber jar and correct REMOVE result
+
+Version 1.0, first version of this tool.

@@ -9,7 +9,7 @@
           </elementProp>
           <elementProp name="APM_TRANS_PREFIX" elementType="Argument">
             <stringProp name="Argument.name">APM_TRANS_PREFIX</stringProp>
-            <stringProp name="Argument.value">${__P(param_apm_prefix,TR_)}</stringProp>
+            <stringProp name="Argument.value">${__P(param_apm_prefix,)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
