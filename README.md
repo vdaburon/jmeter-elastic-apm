@@ -5,6 +5,9 @@
   <p align="center"><a href="https://github.com/vdaburon/jmeter-elastic-apm">Link to github project jmeter-elastic-apm</a></p>
 </p>
 
+An article "Why and How To Integrate Elastic APM in Apache JMeter" about this plugin and some advices: <br/>
+https://dzone.com/articles/integrating-elastic-apm-in-apache-jmeter
+
 # Apache JMeter with integration of ElasticSearch Application Performance Monitoring
 This tool manages the integration of ElasticSearch Application Performance Monitoring API in the Apache JMeter.
 
